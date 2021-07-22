@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('/videos', VideoController::class)
     ->missing(function () {
-        return response('Não encontrado');
+        return response()->json(['retorno' => 'Não encontrado.'], 404);
     });;
