@@ -18,7 +18,6 @@ class VideoController extends Controller
     public function index(): VideoCollection
     {
         return new VideoCollection(Video::all());
-//        return new VideoCollection(Video::paginate());
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\VideoController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('/videos', VideoController::class)
     ->missing(function () {
         return response()->json(['retorno' => 'Não encontrado.'], 404);
-    });;
+    });
+
+Route::apiResource('/categorias', CategoriaController::class)
+    ->missing(function () {
+        return response()->json(['retorno' => 'Não encontrado.'], 404);
+    });
