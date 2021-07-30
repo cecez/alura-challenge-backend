@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CategoriaCollection;
+use App\Http\Resources\CategoriaResource;
 use App\Models\Categoria;
 use Illuminate\Http\Request;
 
@@ -32,12 +33,12 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Categoria  $categoria
+     * @return CategoriaResource
      */
-    public function show($id)
+    public function show(Categoria $categoria): CategoriaResource
     {
-        //
+        return new CategoriaResource($categoria);
     }
 
     /**
