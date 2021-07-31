@@ -7,6 +7,7 @@ use App\Http\Resources\CategoriaResource;
 use App\Models\Categoria;
 use App\Rules\Hexcolor;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CategoriaController extends Controller
 {
@@ -73,11 +74,15 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Categoria  $categoria
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(Categoria $categoria): Response
     {
-        //
+        if ($categoria->delete()) {
+            return response('Categoria excluída com sucesso.');
+        } else {
+            return response('Falha ao excluir categoria.');
+        }
     }
 }

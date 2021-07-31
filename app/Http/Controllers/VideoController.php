@@ -45,7 +45,7 @@ class VideoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Video  $video
+     * @param  Video  $video
      * @return VideoResource
      */
     public function show(Video $video): VideoResource
@@ -57,7 +57,7 @@ class VideoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Video  $video
+     * @param  Video  $video
      * @return VideoResource
      */
     public function update(Request $request, Video $video): VideoResource
@@ -81,7 +81,7 @@ class VideoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Video  $video
+     * @param  Video  $video
      * @return Response
      */
     public function destroy(Video $video): Response
