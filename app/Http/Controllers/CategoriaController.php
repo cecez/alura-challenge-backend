@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\CategoriaCollection;
 use App\Http\Resources\CategoriaResource;
 use App\Models\Categoria;
+use App\Rules\Hexcolor;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -22,7 +23,7 @@ class CategoriaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return CategoriaResource
      */
     public function store(Request $request): CategoriaResource
@@ -30,7 +31,7 @@ class CategoriaController extends Controller
         // valida
         $dadosValidados = $request->validate([
             'titulo' => ['required', 'max:255'],
-            'cor' => ['required', 'max:255', 'regex:/#([[:xdigit:]]{3}){1,2}\b/'],
+            'cor' => ['required', 'max:255', new Hexcolor()],
         ]);
 
         // salva e retorna
@@ -51,13 +52,22 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Categoria  $categoria
+     * @return CategoriaResource
      */
-    public function update(Request $request, $id)
+    public function update(Categoria $categoria): CategoriaResource
     {
-        //
+        // valida
+        $dadosValidados = request()->validate([
+            'titulo' => ['sometimes', 'required', 'max:255'],
+            'cor' => ['sometimes', 'required', 'max:255', new Hexcolor()],
+        ]);
+
+        // atualiza
+        $categoria->update($dadosValidados ?? []);
+
+        // retorna
+        return new CategoriaResource($categoria);
     }
 
     /**
