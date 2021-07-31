@@ -12,4 +12,9 @@ class Video extends Model
     use SoftDeletes;
 
     protected $fillable = ['titulo', 'descricao', 'url'];
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class);
+    }
 }

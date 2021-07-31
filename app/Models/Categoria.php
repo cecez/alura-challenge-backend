@@ -10,4 +10,9 @@ class Categoria extends Model
     use HasFactory;
 
     protected $fillable = ['titulo', 'cor'];
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
 }

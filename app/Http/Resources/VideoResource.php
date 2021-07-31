@@ -19,6 +19,7 @@ class VideoResource extends JsonResource
             'titulo' => $this->titulo,
             'descricao' => $this->descricao,
             'url' => $this->url,
+            'categoria_id' => $this->categoria_id
         ];
     }
 }
