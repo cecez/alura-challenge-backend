@@ -23,11 +23,18 @@ class CategoriaController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return CategoriaResource
      */
-    public function store(Request $request)
+    public function store(Request $request): CategoriaResource
     {
-        //
+        // valida
+        $dadosValidados = $request->validate([
+            'titulo' => ['required', 'max:255'],
+            'cor' => ['required', 'max:255', 'regex:/#([[:xdigit:]]{3}){1,2}\b/'],
+        ]);
+
+        // salva e retorna
+        return new CategoriaResource(Categoria::create($dadosValidados));
     }
 
     /**
